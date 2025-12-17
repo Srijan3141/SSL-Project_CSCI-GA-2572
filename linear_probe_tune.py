@@ -1,7 +1,3 @@
-"""
-Hyperparameter tuning for linear probing
-Runs grid search over key hyperparameters and saves results
-"""
 import argparse
 import os
 import pandas as pd

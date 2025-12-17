@@ -1,6 +1,3 @@
-# Copyright (c) ByteDance, Inc. and its affiliates.
-# Modified for custom 96x96 dataset
-
 import argparse
 import os
 import sys
