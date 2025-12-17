@@ -1,10 +1,8 @@
 """
-Linear Probe TrainAndVal and Predict for Mini-ImageNet Kaggle Dataset
+Linear Probe TrainAndVal and Predict
 ======================================================================
 
-This script trains a linear classifier on features extracted from a frozen
-pretrained Vision Transformer (ViT). It is designed to work with the dataset
-format created by `prepare_miniimagenet_for_kaggle.py`.
+This script trains a linear classifier on features extracted from a frozen pretrained Vision Transformer (ViT).
 
 Pipeline:
     1. Load pretrained ViT checkpoint.
@@ -43,20 +41,20 @@ submission.csv:
 
 Usage:
 python linear_probe_trainandval_and_predict.py \
-    --checkpoint /scratch/sp7007/bigrun_resumed/checkpoint0500.pth \
-    --train_csv /scratch/sp7007/imagenet/kaggle_data_miniimagenet/train_labels.csv \
-    --train_dir /scratch/sp7007/imagenet/kaggle_data_miniimagenet/train \
-    --val_csv /scratch/sp7007/imagenet/kaggle_data_miniimagenet/val_labels.csv \
-    --val_dir /scratch/sp7007/imagenet/kaggle_data_miniimagenet/val \
-    --test_csv /scratch/sp7007/imagenet/kaggle_data_miniimagenet/test_images.csv \
-    --test_dir /scratch/sp7007/imagenet/kaggle_data_miniimagenet/test \
-    --num_labels 100 \
+    --checkpoint ./ibot_results/checkpoint0001.pth \
+    --train_csv /scratch/ss17894/DL/data/train_labels.csv \
+    --train_dir /scratch/ss17894/DL/data/train \
+    --val_csv /scratch/ss17894/DL/data/val_labels.csv \
+    --val_dir /scratch/ss17894/DL/data/val \
+    --test_csv /scratch/ss17894/DL/data/test_images.csv \
+    --test_dir /scratch/ss17894/DL/data/test \
+    --num_labels 200 \
     --epochs 39 \
     --batch_size 512 \
     --lr 0.01 \
     --weight_decay 1e-5 \
     --extract_batch_size 512 \
-    --output_dir /scratch/sp7007/testtest
+    --output_dir ./submission/data1
 
 """
 
@@ -381,10 +379,6 @@ def main():
     output_csv = Path(args.output_dir) / args.output_filename
     create_submission(classifier, test_features, test_filenames,
                      args.batch_size, device, output_csv)
-
-    print("\n" + "="*60)
-    print("DONE! Now upload your submission.csv to Kaggle.")
-    print("="*60)
 
 
 if __name__ == "__main__":

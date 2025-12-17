@@ -2,7 +2,7 @@
 # Training script for iBOT on 2xA100 GPUs with 500k 96x96 images
 
 # Output directory
-OUTPUT_DIR="/scratch/ss17894/ibot_results"
+OUTPUT_DIR="ibot_results"
 mkdir -p $OUTPUT_DIR
 
 # Launch distributed training on 2 GPUs using torchrun
@@ -12,7 +12,7 @@ torchrun \
     main_ibot_custom.py \
     --arch vit_small \
     --patch_size 8 \
-    --data_path /scratch/ss17894/pretrain \
+    --data_path /scratch/ss17894/DL/data/train \
     --output_dir $OUTPUT_DIR \
     --batch_size_per_gpu 192 \
     --epochs 600 \
@@ -38,11 +38,11 @@ torchrun \
     --saveckp_freq 10 \
     --num_workers 28 \
     --seed 0 \
-    --train_csv /scratch/ss17894/data/train_labels.csv \
-    --val_csv /scratch/ss17894/data/val_labels.csv \
-    --train_dir /scratch/ss17894/data/train \
-    --val_dir /scratch/ss17894/data/val \
-    # --load_from checkpoint0500.pth
+    --train_csv /scratch/ss17894/imagenet/train_labels.csv \
+    --val_csv /scratch/ss17894/imagenet/val_labels.csv \
+    --train_dir /scratch/ss17894/imagenet/train \
+    --val_dir /scratch/ss17894/imagenet/val \
+    # --load_from checkpoint0010.pth
 
 
 echo "Training completed! Checkpoint saved to $OUTPUT_DIR"
